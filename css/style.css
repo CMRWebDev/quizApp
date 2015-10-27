@@ -1,0 +1,22 @@
+div {
+	border: 1px solid black;
+}
+
+#top-section {
+	overflow: hidden;
+}
+
+.stock-icon {
+	float: left;
+}
+
+.big-title {
+	float: right;
+	font-size: 24px;
+	margin-top: 81px;
+
+}
+
+.question-image {
+	
+}
