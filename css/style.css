@@ -2,6 +2,10 @@ div {
 	border: 1px solid black;
 }
 
+html {
+	font-family: 'Inconsolata', ;
+}
+
 #top-section {
 	overflow: hidden;
 }
@@ -18,5 +22,28 @@ div {
 }
 
 .question-image {
+	display: block;
+	margin: 0 auto;
+}
+
+#questions-section {
+	margin: 0 auto;
+    width: 60%;
+    height: 585px;
+    overflow: hidden;
+
+	}
+
+#question_wrapper {
+	margin-top: 30px;
+}
+
+#answer_holder {
 	
+	margin-top: 30px;
+
+}
+
+#submit {
+	margin-top: 20px;
 }
