@@ -1,9 +1,11 @@
+
 div {
 	border: 1px solid black;
 }
 
 html {
 	font-family: 'Inconsolata', ;
+	background-color: #CCCCCC;
 }
 
 #top-section {
@@ -18,6 +20,8 @@ html {
 	float: right;
 	font-size: 24px;
 	margin-top: 81px;
+	text-transform: uppercase;
+
 
 }
 
@@ -31,6 +35,7 @@ html {
     width: 60%;
     height: 585px;
     overflow: hidden;
+
 
 	}
 
@@ -46,4 +51,18 @@ html {
 
 #submit {
 	margin-top: 20px;
+}
+
+#progress {
+	list-style-type: none;
+	display: -webkit-box;
+	
+}
+
+.feedback_positive {
+	color: green;
+}
+
+.feedback_negative {
+	color: red;
 }
