@@ -24,22 +24,48 @@ $(document).ready(function(){
 		question: "Where is Wallstreet located?",
 		choices: ["Chicago", "Boston", "San Fransisco", "New York"],
 		correct: 3
-	}]
+	}];
 	//Gobal Variables
 	var numberCorrect = 0; // records number of questions answered correctly
 	var currentQuestion = 0; // tracks question number
-	var quiz = $(#quiz); //quiz div object
-	var selection = []; // array containing user choices
+	var quiz = $("#quiz"); //quiz div object
+	var selections = [];
+	 // array containing user choices
 
+	// Display intinial Questiion
+	nextQuestion();
+
+	//click handler for submit button
 	$("#questions_section").on("click", "#submit", function() {
-		alert();
-		currentQuestion++;
+		if (isNaN(selections[currentQuestion])) {
+			alert('Please make a choice!');
+		} 
+		else {
+			currentQuestion++;
+			nextQuestion();
+		}
 	});
 
 	function nextQuestion() {
-		if (currentQuestion < 5) {
+		
+		$('.question').remove();
+		$('answer_holder input').remove();
+		$('answer_holder span').remove();
+		if (currentQuestion < questions.length) {
+			$('<span class="question"</span>').appendTo('#quiz').html(questions[currentQuestion].qestion)
+			$('<input type="radio" name="option" class="option" value="0">').appendTo('#answer_holder').html(questions[currentQuestion].choices[0]);
+			$('<input type="radio" name="option" class="option" value="1">').appendTo('#answer_holder').html(questions[currentQuestion].choices[1]);
+			$('<input type="radio" name="option" class="option" value="2">').appendTo('#answer_holder').html(questions[currentQuestion].choices[2]);
+			$('<input type="radio" name="option" class="option" value="3">').appendTo('#answer_holder').html(questions[currentQuestion].choices[3]);
 
+			
+
+			//document.getElementIdBy('question').innerHTML = questions[0].question
 		}
 
 	}
 });
+
+
+
+
