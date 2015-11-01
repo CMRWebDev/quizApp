@@ -37,9 +37,11 @@ $(document).ready(function(){
 
 	//click handler for submit button
 	$('#question_wrapper').on("click", "#submit", function() {
+		verify_answer();
 		currentQuestion++;
 		console.log(currentQuestion);
 		nextQuestion();
+		
 	});
 
 	// Displays the question and choices on page
@@ -50,8 +52,8 @@ $(document).ready(function(){
 		if (currentQuestion < questions.length) {
 			var newQuestion = '<span class="question">'+questions[currentQuestion].question+'</span><br><div id="answer_holder"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><span id="hint"></span><input type="button" id="retry_button" value="Try Again!"></div>';
 			$("#question_wrapper").html(newQuestion);
-			verify_answer();
-			numberCorrect++;
+			//if currentquestion === 5 then show user score 
+			
 		}
 	}
 
@@ -60,7 +62,13 @@ $(document).ready(function(){
 		var answer = $("input[type='radio']:checked").val();
 		if (answer == questions[currentQuestion].correct) {
 			$('<li class="feedback_positive"><i class="fa fa-thumbs-up"></li>').appendTo('#progress');
-	}
+			numberCorrect++;
+			console.log(numberCorrect);
+		}
+		else {
+			$('<li class="feedback_negative"><i class="fa fa-thumbs-down"></li>').appendTo('#progress');
+		}
+		
 
 	}
 
