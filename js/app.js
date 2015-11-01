@@ -36,7 +36,7 @@ $(document).ready(function(){
 	nextQuestion();
 
 	//click handler for submit button
-	$("#submit").click(function() {
+	$('#question_wrapper').on("click", "#submit", function() {
 		currentQuestion++;
 		console.log(currentQuestion);
 		nextQuestion();
@@ -49,8 +49,9 @@ $(document).ready(function(){
 		$('answer_holder span').remove();
 		if (currentQuestion < questions.length) {
 			var newQuestion = '<span class="question">'+questions[currentQuestion].question+'</span><br><div id="answer_holder"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><span id="hint"></span><input type="button" id="retry_button" value="Try Again!"></div>';
-		$("#question_wrapper").html(newQuestion);
-		verify_answer();
+			$("#question_wrapper").html(newQuestion);
+			verify_answer();
+			numberCorrect++;
 		}
 	}
 
