@@ -27,7 +27,7 @@ $(document).ready(function(){
 	}];
 	//Gobal Variables
 	var numberCorrect = 0; // records number of questions answered correctly
-	var currentQuestion = 0; // tracks question number
+	var currentQuestion = 1; // tracks question number
 	var quiz = $("#quiz"); //quiz div object
 	var selections = [];
 	 // array containing user choices
@@ -36,32 +36,37 @@ $(document).ready(function(){
 	nextQuestion();
 
 	//click handler for submit button
-	$("#questions_section").on("click", "#submit", function() {
-		if (isNaN(selections[currentQuestion])) {
-			alert('Please make a choice!');
-		} 
-		else {
-			currentQuestion++;
-			nextQuestion();
-		}
+	$("#submit").click(function() {
+		
+		verify_answer();
+		
 	});
 
+	// Displays the question and choices on page
 	function nextQuestion() {
 		
 		$('.question').remove();
 		$('answer_holder input').remove();
 		$('answer_holder span').remove();
 		if (currentQuestion < questions.length) {
-			$('<span class="question"</span>').appendTo('#quiz').html(questions[currentQuestion].qestion)
-			$('<input type="radio" name="option" class="option" value="0">').appendTo('#answer_holder').html(questions[currentQuestion].choices[0]);
-			$('<input type="radio" name="option" class="option" value="1">').appendTo('#answer_holder').html(questions[currentQuestion].choices[1]);
-			$('<input type="radio" name="option" class="option" value="2">').appendTo('#answer_holder').html(questions[currentQuestion].choices[2]);
-			$('<input type="radio" name="option" class="option" value="3">').appendTo('#answer_holder').html(questions[currentQuestion].choices[3]);
-
-			
-
-			//document.getElementIdBy('question').innerHTML = questions[0].question
+			var newQuestion = '<span class="question">'+questions[currentQuestion].question+'</span><br><div id="answer_holder"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><span id="hint"></span><input type="button" id="retry_button" value="Try Again!"></div>';
+		$("#question_wrapper").html(newQuestion);
 		}
+	}
+
+	// verify if answer is correct
+	function verify_answer() {
+		var answer = $("input[type='radio']:checked").val();
+		if (answer == questions[currentQuestion].correct) {
+			$('<i class="fa fa-thumbs-up">').appendTo(.feedback);
+			$()
+			//
+		}
+
+	}
+
+	// adds thumbs up or thumbs down based on user choice
+	function feedback(){
 
 	}
 });
