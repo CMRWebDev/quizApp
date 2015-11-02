@@ -30,6 +30,7 @@ $(document).ready(function(){
 	var currentQuestion = 0; // tracks question number
 	var quiz = $("#quiz"); //quiz div object
 	var selections = [];
+
 	 // array containing user choices
 
 	// Display intinial Questiion
@@ -40,6 +41,7 @@ $(document).ready(function(){
 		verify_answer();
 		currentQuestion++;
 		console.log(currentQuestion);
+
 		nextQuestion();
 		
 	});
@@ -66,15 +68,26 @@ $(document).ready(function(){
 			console.log(numberCorrect);
 		}
 		else {
+			$('#answer_holder').remove();
+			$('.question').replaceWith("<h2>You recieved a + numberCorrect + out of 5</h2>");
+		}
+	}
+		else {
 			$('<li class="feedback_negative"><i class="fa fa-thumbs-down"></li>').appendTo('#progress');
 		}
-		
-
 	}
 
-	// adds thumbs up or thumbs down based on user choice
+	// display user score at end of quiz when last question is answered
+	function displayScore() {
+		if (currentQuestion == 5) {
+			// hide questions and display user score
+			$('#answer_holder').remove();
+			$('.question').replaceWith("<h2>You recieved a + numberCorrect + out of 5</h2>");
+			// display trya again button and refresh the page whn clicked
+		}
+	}
 	
-	
+	// if  user dosnt click on radio dont do anything 
 });
 
 
