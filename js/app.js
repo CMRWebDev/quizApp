@@ -43,19 +43,27 @@ $(document).ready(function(){
 		console.log(currentQuestion);
 
 		nextQuestion();
+		displayScore();
 		
 	});
 
 	// Displays the question and choices on page
 	function nextQuestion() {
-		$('.question').remove();
-		$('answer_holder input').remove();
-		$('answer_holder span').remove();
-		if (currentQuestion < questions.length) {
-			var newQuestion = '<span class="question">'+questions[currentQuestion].question+'</span><br><div id="answer_holder"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><span id="hint"></span><input type="button" id="retry_button" value="Try Again!"></div>';
-			$("#question_wrapper").html(newQuestion);
+		if (currentQuestion < 5) {
+			$('.question').remove();
+			$('answer_holder input').remove();
+			$('answer_holder span').remove();
+			if (currentQuestion < questions.length) {
+				var newQuestion = '<span class="question">'+questions[currentQuestion].question+'</span><br><div id="answer_holder"><input type="radio" name="option" class="option" value="0"><span class="answer">'+questions[currentQuestion].choices[0]+'</span><br><input type="radio" name="option" class="option" value="1"><span class="answer">'+questions[currentQuestion].choices[1]+'</span><br><input type="radio" name="option" class="option" value="2"><span class="answer">'+questions[currentQuestion].choices[2]+'</span><br><input type="radio" name="option" class="option" value="3"><span class="answer">'+questions[currentQuestion].choices[3]+'</span><br></div><div id="button_holder"><input type="button" id="submit" value="Submit Answer"><span id="hint"></span><input type="button" id="retry_button" value="Try Again!"></div>';
+				$("#question_wrapper").html(newQuestion);
 			//if currentquestion === 5 then show user score 
-			
+			}
+		}
+		else if (currentQuestion == 5) {
+			// hide questions and display user score
+			$('#answer_holder').remove();
+			$('.question').html("<h2>You recieved a + numberCorrect + out of 5</h2>");
+			// display trya again button and refresh the page whn clicked
 		}
 	}
 
@@ -68,24 +76,12 @@ $(document).ready(function(){
 			console.log(numberCorrect);
 		}
 		else {
-			$('#answer_holder').remove();
-			$('.question').replaceWith("<h2>You recieved a + numberCorrect + out of 5</h2>");
-		}
-	}
-		else {
 			$('<li class="feedback_negative"><i class="fa fa-thumbs-down"></li>').appendTo('#progress');
 		}
 	}
 
 	// display user score at end of quiz when last question is answered
-	function displayScore() {
-		if (currentQuestion == 5) {
-			// hide questions and display user score
-			$('#answer_holder').remove();
-			$('.question').replaceWith("<h2>You recieved a + numberCorrect + out of 5</h2>");
-			// display trya again button and refresh the page whn clicked
-		}
-	}
+	
 	
 	// if  user dosnt click on radio dont do anything 
 });
