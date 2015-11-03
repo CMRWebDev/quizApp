@@ -43,7 +43,7 @@ $(document).ready(function(){
 		console.log(currentQuestion);
 
 		nextQuestion();
-		displayScore();
+		
 		
 	});
 
@@ -62,7 +62,8 @@ $(document).ready(function(){
 		else if (currentQuestion == 5) {
 			// hide questions and display user score
 			$('#answer_holder').remove();
-			$('.question').html("<h2>You recieved a + numberCorrect + out of 5</h2>");
+			var final_score= '<span id="final">You recieved a '+ numberCorrect+' out of 5';
+			$('.question').html(final_score);
 			// display trya again button and refresh the page whn clicked
 		}
 	}
