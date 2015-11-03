@@ -43,9 +43,13 @@ $(document).ready(function(){
 		console.log(currentQuestion);
 
 		nextQuestion();
-		
-		
 	});
+
+	//refresh page on click try again button
+	$('#question_wrapper').on("click", "#retry_button", function() {
+		location.reload(true);
+	});
+
 
 	// Displays the question and choices on page
 	function nextQuestion() {
